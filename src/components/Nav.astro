@@ -1,0 +1,218 @@
+---
+const links = [
+	{ href: '#services', label: 'Services' },
+	{ href: '#built-to-last', label: 'Packages' },
+	{ href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="nav">
+	<div class="nav-inner">
+		<a href="#" class="logo">
+			<svg viewBox="0 0 200 140" class="logo-mark" aria-hidden="true">
+				<path d="M29.485,30.358C35.303,26.475 44.771,24.763 50.443,26.595C56.368,28.509 56.513,33.692 50.725,37.979C44.69,42.449 34.624,44.14 28.777,41.805C23.336,39.632 23.215,34.543 29.485,30.358Z" />
+				<path d="M152.579,77.656C157.92,71.045 169.611,68.394 178.64,71.775C188.258,75.376 191.506,84.501 186.617,91.718C181.415,99.396 168.835,102.358 159.199,97.987C150.079,93.85 146.947,84.627 152.579,77.656Z" />
+				<path d="M109.118,4.724C117.289,4.145 122.741,7.058 121.98,10.912C121.173,14.992 113.686,19.17 105.258,19.671C96.901,20.167 91.423,16.853 92.702,12.846C93.921,9.026 101.14,5.289 109.118,4.724Z" />
+				<path d="M87,105.37C97.923,105.67 105.474,113.399 104.278,122.547C103.011,132.229 92.407,140.352 80.981,139.682C69.837,139.029 62.158,130.24 64.234,120.836C66.208,111.892 76.421,105.08 87,105.37Z" />
+				<path d="M150.241,7.14C157.616,8.701 159.391,13.472 155.143,17.508C150.579,21.845 140.604,24.007 133.341,22.094C126.377,20.259 124.59,15.392 129.382,11.417C133.97,7.612 143.398,5.691 150.241,7.14Z" />
+				<path d="M53.464,96.714C61.279,101.099 61.792,110.826 54.856,118.05C47.528,125.683 34.746,127.597 27.068,122.395C19.851,117.506 19.484,107.828 27.08,100.916C34.212,94.428 46.052,92.555 53.464,96.714Z" />
+				<path d="M183.084,21.784C187.849,25.779 185.45,32.182 177.509,35.543C169.357,38.995 158.799,37.761 154.438,33.348C150.375,29.235 152.831,23.377 160.925,20.26C168.568,17.316 178.507,17.947 183.084,21.784Z" />
+				<path d="M35.164,77.641C37.678,83.672 31.971,91.954 22.319,95.308C12.441,98.74 2.72,95.534 0.831,89.15C-0.969,83.066 4.832,75.733 14.275,72.666C23.52,69.664 32.767,71.893 35.164,77.641Z" />
+				<path d="M198.654,51.114C199.267,57.743 191.429,64.325 180.982,64.8C170.775,65.265 162.403,59.69 162.502,53.157C162.596,46.93 170.357,41.431 180.056,40.791C189.963,40.137 198.069,44.796 198.654,51.114Z" />
+				<path d="M35.306,56.254C32.893,61.97 23.545,67.031 14.694,66.849C6.073,66.671 1.471,61.615 4.415,56.138C7.242,50.877 16.239,46.605 24.429,46.505C33.101,46.398 37.554,50.927 35.306,56.254Z" />
+				<path d="M142.959,127.765C132.596,132.624 119.736,129.013 114.969,120.492C110.465,112.439 114.611,102.461 124.644,98.132C134.361,93.939 146.373,96.478 151.522,104.052C156.938,112.017 153.066,123.026 142.959,127.765Z" />
+				<path d="M75.907,25.314C67.895,27.975 59.392,26.871 57.13,23.381C54.993,20.084 58.977,15.357 66.78,12.865C74.399,10.431 82.488,11.224 85.037,14.32C87.711,17.567 83.853,22.676 75.907,25.314Z" />
+			</svg>
+			squadmember
+		</a>
+
+		<nav class="desktop-nav" aria-label="Primary">
+			{links.map((link) => (
+				<a href={link.href}>{link.label}</a>
+			))}
+			<a href="#contact" class="cta">Get a quote</a>
+		</nav>
+
+		<button
+			id="nav-toggle"
+			class="nav-toggle"
+			type="button"
+			aria-label="Toggle menu"
+			aria-expanded="false"
+			aria-controls="mobile-nav"
+		>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+
+	<nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" data-open="false">
+		{links.map((link) => (
+			<a href={link.href}>{link.label}</a>
+		))}
+		<a href="#contact" class="cta">Get a quote</a>
+	</nav>
+</header>
+
+<script>
+	const toggle = document.getElementById('nav-toggle');
+	const mobileNav = document.getElementById('mobile-nav');
+
+	if (toggle && mobileNav) {
+		const closeMenu = () => {
+			mobileNav.dataset.open = 'false';
+			toggle.setAttribute('aria-expanded', 'false');
+			toggle.classList.remove('is-open');
+		};
+
+		toggle.addEventListener('click', () => {
+			const isOpen = mobileNav.dataset.open === 'true';
+			mobileNav.dataset.open = isOpen ? 'false' : 'true';
+			toggle.setAttribute('aria-expanded', String(!isOpen));
+			toggle.classList.toggle('is-open', !isOpen);
+		});
+
+		mobileNav.querySelectorAll('a').forEach((link) => {
+			link.addEventListener('click', closeMenu);
+		});
+	}
+</script>
+
+<style>
+	.nav {
+		position: sticky;
+		top: 0;
+		z-index: 100;
+		background: var(--forest);
+		border-bottom: 1px solid rgba(244, 239, 227, 0.1);
+	}
+
+	.nav-inner {
+		padding: 18px 48px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-family: system-ui, sans-serif;
+		font-size: 22px;
+		font-weight: 500;
+		letter-spacing: -0.2px;
+		color: var(--cream);
+	}
+
+	.logo:hover {
+		color: var(--cream);
+	}
+
+	.logo-mark {
+		height: 24px;
+		width: auto;
+		fill: var(--green-lighter);
+	}
+
+	.desktop-nav {
+		display: flex;
+		align-items: center;
+		gap: 36px;
+	}
+
+	.desktop-nav a,
+	.mobile-nav a {
+		color: var(--cream-dim);
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+	}
+
+	.desktop-nav a:hover,
+	.mobile-nav a:hover {
+		color: var(--cream);
+	}
+
+	.cta {
+		background: var(--green-light);
+		color: var(--forest) !important;
+		padding: 11px 22px;
+		border-radius: 999px;
+		font-weight: 800 !important;
+	}
+
+	.cta:hover {
+		background: var(--green-lighter) !important;
+	}
+
+	.nav-toggle {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 40px;
+		height: 40px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+	}
+
+	.nav-toggle span {
+		display: block;
+		width: 24px;
+		height: 2px;
+		background: var(--cream);
+		transition: transform 0.2s ease, opacity 0.2s ease;
+	}
+
+	.nav-toggle.is-open span:nth-child(1) {
+		transform: translateY(7px) rotate(45deg);
+	}
+
+	.nav-toggle.is-open span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.nav-toggle.is-open span:nth-child(3) {
+		transform: translateY(-7px) rotate(-45deg);
+	}
+
+	.mobile-nav {
+		display: none;
+		flex-direction: column;
+		gap: 4px;
+		padding: 0 24px 20px;
+	}
+
+	.mobile-nav a {
+		padding: 12px 0;
+		border-top: 1px solid rgba(244, 239, 227, 0.08);
+	}
+
+	.mobile-nav .cta {
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	@media (max-width: 860px) {
+		.nav-inner {
+			padding: 16px 24px;
+		}
+
+		.desktop-nav {
+			display: none;
+		}
+
+		.nav-toggle {
+			display: flex;
+		}
+
+		.mobile-nav[data-open='true'] {
+			display: flex;
+		}
+	}
+</style>

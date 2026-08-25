@@ -1,0 +1,155 @@
+---
+const services = [
+	{
+		title: 'Bespoke design',
+		description:
+			"No templates. Every site is designed around your club's colours, badge and history — and built to work properly on a phone at the clubhouse bar.",
+	},
+	{
+		title: 'CMS you control',
+		description:
+			"Update fixtures, results, news and player pages yourselves — no developer needed. Simple enough for whoever's on the committee this season.",
+	},
+	{
+		title: 'Membership & payments',
+		description:
+			'Online sign-up, subs collection and renewal reminders built in — so chasing subs stops eating into your committee meetings.',
+	},
+];
+---
+
+<section id="services" class="services">
+	<div class="heading">
+		<div class="eyebrow">Services</div>
+		<h2>What we build</h2>
+	</div>
+	<div class="grid">
+		{services.map((service, i) => (
+			<div class="card">
+				<div class={`icon icon-${i}`}>
+					{i === 0 && <span class="ring-inner"></span>}
+					{i === 2 && <span class="dot"></span>}
+				</div>
+				<h3>{service.title}</h3>
+				<p>{service.description}</p>
+			</div>
+		))}
+	</div>
+</section>
+
+<style>
+	.services {
+		padding: 120px 48px;
+		max-width: 1180px;
+		margin: 0 auto;
+	}
+
+	.heading {
+		text-align: center;
+		margin-bottom: 72px;
+	}
+
+	.eyebrow {
+		color: var(--green);
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		margin-bottom: 14px;
+	}
+
+	h2 {
+		font-family: 'Bebas Neue', sans-serif;
+		font-size: 54px;
+		letter-spacing: 0.5px;
+		margin: 0;
+		color: var(--ink);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 40px;
+	}
+
+	.card {
+		border-top: 3px solid var(--ink);
+		padding-top: 26px;
+	}
+
+	.icon {
+		width: 46px;
+		height: 46px;
+		margin-bottom: 22px;
+		position: relative;
+	}
+
+	.icon-0 {
+		border: 2px solid var(--green);
+		border-radius: 50%;
+	}
+
+	.icon-0 .ring-inner {
+		position: absolute;
+		inset: 10px;
+		border: 2px solid var(--green);
+		border-radius: 50%;
+	}
+
+	.icon-1::before,
+	.icon-1::after,
+	.icon-1 {
+		content: '';
+	}
+
+	.icon-1 {
+		background-image: linear-gradient(var(--green), var(--green)),
+			linear-gradient(var(--green), var(--green)), linear-gradient(var(--green), var(--green));
+		background-repeat: no-repeat;
+		background-size: 46px 3px, 32px 3px, 40px 3px;
+		background-position: left 8px, left 21px, left 34px;
+	}
+
+	.icon-2 {
+		border: 2px solid var(--green);
+		border-radius: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.icon-2 .dot {
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background: var(--green);
+	}
+
+	h3 {
+		font-size: 22px;
+		font-weight: 800;
+		margin: 0 0 12px;
+	}
+
+	.card p {
+		color: var(--body-text);
+		line-height: 1.65;
+		font-size: 15.5px;
+		margin: 0;
+	}
+
+	@media (max-width: 900px) {
+		.services {
+			padding: 80px 24px;
+		}
+
+		.grid {
+			grid-template-columns: 1fr;
+			gap: 44px;
+		}
+
+		h2 {
+			font-size: 42px;
+		}
+	}
+</style>

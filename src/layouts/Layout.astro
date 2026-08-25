@@ -1,0 +1,87 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'SquadMember — Websites for grassroots rugby clubs in Wales',
+	description = 'SquadMember builds fast, easy-to-manage websites for grassroots rugby clubs across Wales — fixtures, teams, sponsors and membership, all sorted.',
+} = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--bg: #faf6ec;
+		--ink: #1c2118;
+		--forest: #16241a;
+		--forest-light: #1c2e1f;
+		--forest-darker: #101c13;
+		--green: #4d8f66;
+		--green-light: #6fbf8f;
+		--green-lighter: #86efac;
+		--cream: #f4efe3;
+		--cream-dim: #e9e2d2;
+		--cream-muted: #cfc6b2;
+		--muted: #9c9480;
+		--muted-dark: #6f6a5a;
+		--body-text: #55534a;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		margin: 0;
+		background: var(--bg);
+		color: var(--ink);
+		font-family: 'Work Sans', sans-serif;
+		overflow-x: hidden;
+	}
+
+	a {
+		color: var(--green);
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: var(--green-light);
+	}
+
+	input,
+	textarea,
+	button {
+		font-family: 'Work Sans', sans-serif;
+	}
+
+	::selection {
+		background: var(--green);
+		color: var(--bg);
+	}
+</style>

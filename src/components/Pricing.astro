@@ -1,0 +1,290 @@
+---
+const packages = [
+	{
+		id: 'built-to-last',
+		label: 'Built to Last',
+		price: 'From £450',
+		sub: 'one-off build, no ongoing costs',
+		billing: 'One-off cost',
+		featured: false,
+		dark: false,
+		demoUrl: '#',
+		image: '/image_framed-4.webp',
+		features: [
+			'Bespoke design & club branding',
+			'Fixtures, results & league tables',
+			'Team & sponsor pages',
+			'Photo galleries',
+			'Contact form',
+			'No plugins, logins or software to maintain',
+			'Built on standards that will still work in 10 years',
+		],
+	},
+	{
+		id: 'cms',
+		label: 'CMS',
+		price: 'From £900',
+		sub: '+ £35/month hosting & support',
+		billing: 'Billed monthly',
+		featured: true,
+		dark: true,
+		demoUrl: '#',
+		image: '/image_framed-3.webp',
+		features: [
+			'Everything in Built to Last',
+			'Edit news, fixtures & pages yourself',
+			'Unlimited player & team profiles',
+			'Sponsor management dashboard',
+			'Ongoing hosting, updates & support',
+		],
+	},
+	{
+		id: 'cms-membership',
+		label: 'CMS + Membership',
+		price: 'From £1,600',
+		sub: '+ £59/month hosting & support',
+		billing: 'Billed monthly',
+		featured: false,
+		dark: false,
+		demoUrl: '#',
+		image: '/images/packages/cms-membership.jpg',
+		features: [
+			'Everything in CMS',
+			'Online membership sign-up',
+			'Subs & payments (Stripe / GoCardless)',
+			'Apple & Google Wallet membership passes',
+			'Member portal & renewal reminders',
+			'Priority support',
+		],
+	},
+];
+---
+
+{packages.map((pkg, i) => (
+	<section
+		id={pkg.id}
+		class:list={['package', { dark: pkg.dark, featured: pkg.featured, alt: i === 2, reverse: i % 2 === 1 }]}
+	>
+		<div class="inner">
+			<div class="content">
+				<div class="label">{pkg.billing}</div>
+				<div class="price">{pkg.label}</div>
+				<div class="actions">
+					<a href="#contact" class="cta">Get a quote</a>
+					<a href={pkg.demoUrl} class="demo-link" target="_blank" rel="noopener">
+						View demo site &rarr;
+					</a>
+				</div>
+				<div class="sub">{pkg.sub}</div>
+				<div class="features">
+					{pkg.features.map((feature) => (
+						<div class="feature">&#10003; {feature}</div>
+					))}
+				</div>
+			</div>
+			<div class="visual">
+				<img
+					src={pkg.image}
+					alt={`${pkg.label} website preview`}
+					loading="lazy"
+					onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+				/>
+				<div class="visual-fallback">Screenshot coming soon</div>
+			</div>
+		</div>
+	</section>
+))}
+
+<style>
+	.package {
+		padding: 88px 48px;
+		background: var(--bg);
+	}
+
+	.package.alt {
+		background: var(--cream-dim);
+	}
+
+	.package.dark {
+		background: var(--forest);
+	}
+
+	.inner {
+		max-width: 1180px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		gap: 64px;
+	}
+
+	.package.reverse .inner {
+		flex-direction: row-reverse;
+	}
+
+	.content {
+		flex: 0 0 380px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.visual {
+		flex: 1;
+		position: relative;
+		aspect-ratio: 4 / 3;
+		border-radius: 12px;
+		overflow: hidden;
+		border: 1.5px solid #e3dcc9;
+		background: var(--cream-dim);
+	}
+
+	.package.dark .visual {
+		border-color: rgba(244, 239, 227, 0.15);
+		background: var(--forest-light);
+	}
+
+	.visual img {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.visual-fallback {
+		position: absolute;
+		inset: 0;
+		display: none;
+		align-items: center;
+		justify-content: center;
+		color: var(--muted);
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
+
+	.label {
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: var(--green);
+		margin-bottom: 10px;
+	}
+
+	.package.dark .label {
+		color: var(--green-light);
+	}
+
+	.price {
+		font-family: 'Bebas Neue', sans-serif;
+		font-size: 42px;
+		color: var(--ink);
+		margin-bottom: 20px;
+	}
+
+	.package.dark .price {
+		color: var(--cream);
+	}
+
+	.actions {
+		display: flex;
+		align-items: center;
+		gap: 22px;
+		margin-bottom: 20px;
+	}
+
+	.sub {
+		color: #918a76;
+		font-size: 13.5px;
+		margin-bottom: 28px;
+	}
+
+	.package.dark .sub {
+		color: var(--muted);
+	}
+
+	.features {
+		display: flex;
+		flex-direction: column;
+		gap: 13px;
+	}
+
+	.feature {
+		font-size: 14.5px;
+		color: #3a3830;
+	}
+
+	.package.dark .feature {
+		color: var(--cream-dim);
+	}
+
+	.cta {
+		text-align: center;
+		border: 1.5px solid var(--ink);
+		color: var(--ink);
+		padding: 14px 24px;
+		border-radius: 999px;
+		font-weight: 800;
+		font-size: 14px;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	.cta:hover {
+		background: var(--ink);
+		color: var(--cream);
+	}
+
+	.package.dark .cta {
+		border: none;
+		background: var(--green-light);
+		color: var(--forest);
+	}
+
+	.package.dark .cta:hover {
+		background: var(--green-lighter);
+		color: var(--forest);
+	}
+
+	.demo-link {
+		color: var(--green);
+		font-weight: 700;
+		font-size: 13.5px;
+		white-space: nowrap;
+	}
+
+	.package.dark .demo-link {
+		color: var(--green-light);
+	}
+
+	.demo-link:hover {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 960px) {
+		.package {
+			padding: 56px 24px;
+		}
+
+		.inner,
+		.package.reverse .inner {
+			flex-direction: column;
+			gap: 32px;
+		}
+
+		.content {
+			flex: none;
+			width: 100%;
+		}
+
+		.visual {
+			width: 100%;
+		}
+
+		.actions {
+			flex-wrap: wrap;
+			gap: 16px;
+		}
+	}
+</style>
