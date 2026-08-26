@@ -1,12 +1,14 @@
 ---
+import { Font } from "astro:assets";
+
 interface Props {
 	title?: string;
 	description?: string;
 }
 
 const {
-	title = 'SquadMember — Websites for grassroots rugby clubs in Wales',
-	description = 'SquadMember builds fast, easy-to-manage websites for grassroots rugby clubs across Wales — fixtures, teams, sponsors and membership, all sorted.',
+	title = 'squadmember - Websites for grassroots rugby clubs in Wales',
+	description = 'At squadmember we build fast, easy-to-manage websites for grassroots rugby clubs across Wales — fixtures, teams, sponsors and membership, all sorted.',
 } = Astro.props;
 ---
 
@@ -25,6 +27,7 @@ const {
 			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700;800&display=swap"
 			rel="stylesheet"
 		/>
+		<Font cssVariable="--font-lexend" />
 	</head>
 	<body>
 		<slot />
@@ -61,7 +64,7 @@ const {
 		margin: 0;
 		background: var(--bg);
 		color: var(--ink);
-		font-family: 'Work Sans', sans-serif;
+		font-family: var(--font-lexend);
 		overflow-x: hidden;
 	}
 
@@ -72,12 +75,6 @@ const {
 
 	a:hover {
 		color: var(--green-light);
-	}
-
-	input,
-	textarea,
-	button {
-		font-family: 'Work Sans', sans-serif;
 	}
 
 	::selection {
