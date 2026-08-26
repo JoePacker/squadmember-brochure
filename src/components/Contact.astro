@@ -19,7 +19,9 @@
 		</div>
 
 		<div class="form-card">
-			<form id="contact-form">
+			<form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+				<input type="hidden" name="access_key" value="e5367705-19fe-41a6-89a1-605ae5578db2" />
+				<input type="hidden" name="redirect" value="https://squadmember.co.uk/success" />
 				<div class="row">
 					<div class="field">
 						<label for="name">Name</label>
@@ -44,24 +46,10 @@
 						required></textarea>
 				</div>
 				<button type="submit" class="submit">Send message</button>
-				<p class="status" role="status" aria-live="polite"></p>
 			</form>
 		</div>
 	</div>
 </section>
-
-<script>
-	const form = document.getElementById('contact-form') as HTMLFormElement | null;
-	const status = form?.querySelector('.status');
-
-	form?.addEventListener('submit', (event) => {
-		event.preventDefault();
-		if (status) {
-			status.textContent = "Thanks — we'll be in touch shortly.";
-		}
-		form.reset();
-	});
-</script>
 
 <style>
 	.contact {
@@ -187,13 +175,6 @@
 
 	.submit:hover {
 		background: var(--green-lighter);
-	}
-
-	.status {
-		margin: 0;
-		color: var(--green-light);
-		font-size: 14px;
-		min-height: 20px;
 	}
 
 	@media (max-width: 900px) {

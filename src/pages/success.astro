@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Message sent — SquadMember">
+	<Nav />
+	<section class="success">
+		<div class="wrap">
+			<div class="eyebrow">Message sent</div>
+			<h1>Thanks — we'll be in touch shortly.</h1>
+			<p>We've received your message and will come back to you with next steps for your club's new site.</p>
+			<a href="/#contact" class="cta">&larr; Back to site</a>
+		</div>
+	</section>
+	<Footer />
+</Layout>
+
+<style>
+	.success {
+		background: var(--forest);
+		padding: 160px 48px;
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+	}
+
+	.wrap {
+		max-width: 640px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.eyebrow {
+		color: var(--green-light);
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		margin-bottom: 14px;
+	}
+
+	h1 {
+		font-family: 'Bebas Neue', sans-serif;
+		font-size: 48px;
+		letter-spacing: 0.5px;
+		margin: 0 0 20px;
+		color: var(--cream);
+	}
+
+	p {
+		color: var(--cream-muted);
+		font-size: 16px;
+		line-height: 1.65;
+		margin: 0 0 36px;
+	}
+
+	.cta {
+		display: inline-block;
+		background: var(--green-light);
+		color: var(--forest);
+		padding: 15px 34px;
+		border-radius: 999px;
+		font-weight: 800;
+		font-size: 14px;
+		text-transform: uppercase;
+		letter-spacing: 0.3px;
+	}
+
+	.cta:hover {
+		background: var(--green-lighter);
+		color: var(--forest);
+	}
+
+	@media (max-width: 900px) {
+		.success {
+			padding: 100px 24px;
+		}
+
+		h1 {
+			font-size: 36px;
+		}
+	}
+</style>
